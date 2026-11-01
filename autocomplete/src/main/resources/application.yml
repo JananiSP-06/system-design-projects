@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: autocomplete-system
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+autocomplete:
+  cache:
+    ttl-seconds: 300      # how long a cached prefix result stays valid
+  default-top-k: 5
+  dataset-path: data/search_terms.csv
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    com.example.autocomplete: INFO
