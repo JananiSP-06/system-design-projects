@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+# ---------------------------------------------------------------------
+# Hash ring configuration
+#   virtual-nodes : how many virtual points each physical Mongo node
+#                   gets on the ring (higher = more even distribution)
+#   initial-nodes : logical names of the nodes that must be live at
+#                   application start-up
+#   node-uris     : logical node name -> MongoDB connection string
+#                   (ports below map to docker-compose.yml)
+# ---------------------------------------------------------------------
+hashring:
+  virtual-nodes: 150
+  initial-nodes: node1,node2,node3
+  node-uris: {
+    node1: 'mongodb://localhost:27018',
+    node2: 'mongodb://localhost:27019',
+    node3: 'mongodb://localhost:27020'
+  }
+
+logging:
+  level:
+    com.ssn.hashinglab: INFO
