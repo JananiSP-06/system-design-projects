@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# ---------------------------------------------------------------------
+# Token Bucket configuration
+#   capacity     : max tokens a bucket can hold (= max burst size)
+#   refill-rate  : tokens added back per second (= sustained request rate)
+#   header-name  : request header used to identify the client
+# ---------------------------------------------------------------------
+rate-limiter:
+  capacity: 5
+  refill-rate: 1
+  header-name: X-Client-Id
+
+logging:
+  level:
+    com.ssn.ratelimiter: INFO
