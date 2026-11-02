@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: webcrawler-redis
+    ports:
+      - "6379:6379"
+
+  webcrawler:
+    build: .
+    container_name: webcrawler-app
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+    depends_on:
+      - redis
